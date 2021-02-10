@@ -6,13 +6,25 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Hospitalizacion from '../screens/hopitalizacion/hospitalizacion.screen'
 import Urgencias from '../screens/urgencias.screen'
 import Recepcion from '../screens/recepcion.screen'
-// prueba de rama 1
+
+import {Icon} from 'react-native-elements'
+
 const Tab = createBottomTabNavigator();
 
 export default function Navigation() {
     return(
         <NavigationContainer>
-            <Tab.Navigator>
+            <Tab.Navigator
+                initialRouteName="urgencias"
+                tabBarOptions={{
+                    inactiveTintColor:"#646464",
+                    activeTintColor:"#00a680"
+                }}
+                screenOptions={({route}) => ({
+                    tabBarIcon : ({color}) => ScreenOption(route, color)
+                })}
+
+            >
                 <Tab.Screen 
                     name="hospitalizacion"
                     component={Hospitalizacion}
@@ -36,5 +48,31 @@ export default function Navigation() {
                 />
             </Tab.Navigator>
         </NavigationContainer>
+    )
+}
+
+function ScreenOption(route, color) {
+    let iconName;
+
+    switch(route.name){
+        case "hospitalizacion":
+            iconName = "bed-outline"
+            break;
+        case "recepcion":
+            iconName = "account"
+            break;
+        case "urgencias":
+            iconName = "car-electric"
+            break;
+        default:break;
+    }
+
+    return(
+        <Icon
+            type="material-community"
+            name={iconName}
+            size={22}
+            color={color}
+        />
     )
 }

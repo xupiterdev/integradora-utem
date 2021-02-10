@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  View
-} from 'react-native';
+import React from 'react';
+import {StatusBar} from 'react-native'
 
 import Navigation from './app/navigations/navigation.navigation'
 
 export default function App() {
-  return(<Navigation />)
+  return(<>
+    <StatusBar 
+      hidden={true}
+    />
+    <Navigation />
+  </>)
 }
 
 
